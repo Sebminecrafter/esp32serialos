@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "shell/shell.h"
 #include "config.h"
-#include "utilities.h"
+#include "utilities/utilities.h"
 String history[HISTORY_SIZE];
 int historyCount = 0;
 int historyIndex = -1;

@@ -1,10 +1,11 @@
 #include <Arduino.h>
 #include "config.h"
 #include "shell/shell.h"
-#include "utilities.h"
+#include "utilities/utilities.h"
 #include "commands/commands.h"
 #include "commands/command/tft/tft.h"
 #include "misc/startuplogo.h"
+#include "commands/command/wifi/main.h"
 
 bool showPrompt = true; // init prompt display
 
@@ -20,6 +21,7 @@ void setup()
     delay(1000);
   }
   clearScreen();
+  startWifi();
 
   // Deep sleep cause?
   esp_sleep_wakeup_cause_t cause = esp_sleep_get_wakeup_cause();

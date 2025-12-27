@@ -1,4 +1,4 @@
-#include "utilities.h"
+#include "utilities/utilities.h"
 #include <Arduino.h>
 
 uint16_t parseColorInput(String input)

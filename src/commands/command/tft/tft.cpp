@@ -1,7 +1,7 @@
 #include <TFT_eSPI.h>
 #include <SPI.h>
 #include <Arduino.h>
-#include "utilities.h"
+#include "utilities/utilities.h"
 #include "commands/command/tft/tft.h"
 TFT_eSPI tft = TFT_eSPI();
 int crTextY = 0;

@@ -1,5 +1,5 @@
 #include "shell.h"
-#include "utilities.h"
+#include "utilities/utilities.h"
 
 String command = ""; // init command string
 

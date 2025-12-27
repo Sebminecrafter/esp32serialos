@@ -2,7 +2,7 @@
 #include "shell/shell.h"
 #include <Arduino.h>
 #include "config.h"
-#include "utilities.h"
+#include "utilities/utilities.h"
 
 extern String history[HISTORY_SIZE];
 extern int historyCount;

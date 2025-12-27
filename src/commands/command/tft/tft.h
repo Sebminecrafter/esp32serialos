@@ -2,7 +2,7 @@
 #include <TFT_eSPI.h>
 #include <SPI.h>
 #include <Arduino.h>
-#include "utilities.h"
+#include "utilities/utilities.h"
 extern TFT_eSPI tft;
 extern int crTextY;
 extern int currentTextSize;

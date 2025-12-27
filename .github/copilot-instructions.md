@@ -7,7 +7,7 @@ This is a modular C++ firmware for ESP32 devices with serial command interface a
 - **Shell System** (`src/shell/`): Command parsing, history navigation (up/down arrows)
 - **Command Registry** (`src/commands/`): Extensible command table in `commands.cpp`
 - **TFT Display** (`src/commands/command/tft.cpp`): Visual output with color/text controls
-- **Utilities** (`src/utilities.cpp`): Color parsing (hex/RGB), time parsing (1h2m3s), string helpers
+- **Utilities** (`src/utilities/utilities.cpp`): Color parsing (hex/RGB), time parsing (1h2m3s), string helpers
 
 ## Key Patterns
 
