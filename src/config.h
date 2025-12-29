@@ -9,7 +9,7 @@
 #define PROMPT "Esp32SerialOS> "
 #define OSVERSION "Beta 1.0.0"
 #define CONTRIB "Sebminecrafter"
-#define LASTUPD "Converted project from .ino single file to full-on C++ codebase"
+#define LASTUPD "Working on adding wifi..."
 
 constexpr const char *LOGO[] = {
     "    ████████████    ",

@@ -79,7 +79,7 @@ void aboutCmd(String arguments) // About OS
     Serial.print("Made by ");
     Serial.println(CONTRIB);
     Serial.println("Written in C++");
-    Serial.print("Last update:");
+    Serial.print("Last update: ");
     Serial.println(LASTUPD);
 }
 

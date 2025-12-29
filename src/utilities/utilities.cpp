@@ -133,3 +133,16 @@ String formatTime(uint64_t totalSeconds)
 
     return result;
 }
+
+int getNumOf(String args, char delimiter)
+{
+    int numOf = 0;
+    for (int i = 0; i < args.length(); i++)
+    {
+        if (args[i] == delimiter)
+        {
+            numOf++;
+        }
+    }
+    return numOf;
+}

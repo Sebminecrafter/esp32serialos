@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "utilities/utilities.h"
 #include "WiFi.h"
 #include "commands/command/wifi/main.h"
 
@@ -89,4 +90,48 @@ void scan()
 #endif
     // Wait a bit before scanning again.
     delay(10000);
+}
+
+void connect(String arguments)
+{
+    int args = getNumOf(arguments, ' ');
+    if (args == 2)
+    {
+        int endOfSsid = arguments.indexOf(" ");
+        String ssid = arguments.substring(0, endOfSsid - 1);
+        String password = arguments.substring(endOfSsid + 1);
+        Serial.println("\n");
+        Serial.print("Connecting to ");
+        Serial.println(ssid);
+
+        WiFi.begin(ssid, password);
+
+        while (WiFi.status() != WL_CONNECTED)
+        {
+            delay(500);
+            Serial.print(".");
+        }
+
+        Serial.println();
+        Serial.print("WiFi connected, local IP is ");
+        Serial.println(WiFi.localIP());
+    }
+    else
+    {
+        Serial.println("Usage: connect [SSID] [PASSWORD]");
+    }
+}
+
+void disconnect(String arguments)
+{
+    if (arguments == "force")
+    {
+        WiFi.disconnect(true, false);
+        Serial.println("WiFi disconnected and radio stopped");
+    }
+    else
+    {
+        WiFi.disconnect(false, false);
+        Serial.println("WiFi disconnected from network (radio still running, stop with `disconnect force`)");
+    }
 }
