@@ -21,13 +21,13 @@ void setTextSize(int size)
 }
 void TFTtextColor(String arguments)
 {
-    Serial.println("Attempting to set text color to " + arguments);
+    println("Attempting to set text color to " + arguments);
     crTextColor = parseColorInput(arguments);
     clearScreen();
 }
 void TFTbgColor(String arguments)
 {
-    Serial.println("Attempting to set background color to " + arguments);
+    println("Attempting to set background color to " + arguments);
     crBGColor = parseColorInput(arguments);
     clearScreen();
 }
@@ -38,29 +38,29 @@ void TFTorientation(String arguments)
     {
         tft.setRotation(0); // Portrait
         clearScreen();
-        Serial.println("Orientation set to portrait");
+        println("Orientation set to portrait");
     }
     else if (arguments == "1" or arguments == "landscape")
     {
         tft.setRotation(1); // Landscape
         clearScreen();
-        Serial.println("Orientation set to landscape");
+        println("Orientation set to landscape");
     }
     else if (arguments == "2" or arguments == "portrait flipped")
     {
         tft.setRotation(2); // Portrait flipped
         clearScreen();
-        Serial.println("Orientation set to portrait (flipped)");
+        println("Orientation set to portrait (flipped)");
     }
     else if (arguments == "3" or arguments == "landscape flipped")
     {
         tft.setRotation(3); // Landscape flipped
         clearScreen();
-        Serial.println("Orientation set to landscape (flipped)");
+        println("Orientation set to landscape (flipped)");
     }
     else
     {
-        Serial.println("Unknown orientation. Options are: portrait (0), landscape (1), portrait flipped (2), landscape flipped (3)");
+        println("Unknown orientation. Options are: portrait (0), landscape (1), portrait flipped (2), landscape flipped (3)");
     }
 }
 void TFTsetTextSize(String arguments)
@@ -70,22 +70,22 @@ void TFTsetTextSize(String arguments)
         int newTextSize = arguments.toInt();
         if (newTextSize > 7)
         {
-            Serial.println("Text size too big (1-7)");
+            println("Text size too big (1-7)");
         }
         else if (newTextSize < 1)
         {
-            Serial.println("Text size too small (1-7)");
+            println("Text size too small (1-7)");
         }
         else
         {
             setTextSize(newTextSize);
-            Serial.println("Text size set to " + arguments);
+            println("Text size set to " + arguments);
         }
     }
     else
     {
-        Serial.println("Invalid usage.");
-        Serial.println("Usage: `size [1-7]`");
+        println("Invalid usage.");
+        println("Usage: `size [1-7]`");
     }
 }
 void displayText(String text)
@@ -97,17 +97,17 @@ void displayText(String text)
 }
 void showText(String arguments)
 {
-    Serial.println("Showing `" + arguments + "`");
+    println("Showing `" + arguments + "`");
     displayText(arguments);
 }
 void clearScreenCmd(String arguments)
 {
     clearScreen();
-    Serial.println("Screen cleared.");
+    println("Screen cleared.");
 }
 void startTFT()
 {
-    Serial.println("TFT soft reset");                    // Notify serial
+    println("TFT soft reset");                           // Notify serial
     TFTorientation("0");                                 // Reset orientation
     crTextY = 0;                                         // Reset vars
     currentTextSize = 1;                                 // Reset vars

@@ -6,3 +6,12 @@ extern String stripBeginning(String text, String removeText); // Remove specifie
 extern uint64_t parseTime(String input);                      // Natural-ish language time parsing
 extern String formatTime(uint64_t totalSeconds);              // Format seconds to _h _m _s
 extern int getNumOf(String args, char delimiter);             // Get number of delimiter
+
+extern void print(const char *text);
+extern void print(const String &text);
+extern void print(char c);
+extern void print();
+extern void println(const char *text);
+extern void println(const String &text);
+extern void println(char c);
+extern void println();

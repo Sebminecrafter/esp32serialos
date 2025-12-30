@@ -5,7 +5,7 @@
 
 void startWifi()
 {
-    Serial.println("WiFi initialized");
+    println("WiFi initialized");
     // Enable Station Interface
     WiFi.begin();
     WiFi.mode(WIFI_MODE_STA);
@@ -13,55 +13,55 @@ void startWifi()
 
 void ScanWiFi()
 {
-    Serial.println("Scanning...");
+    println("Scanning...");
     // WiFi.scanNetworks will return the number of networks found.
     int n = WiFi.scanNetworks();
-    Serial.println("Scan done");
-    Serial.print(n);
-    Serial.println(" networks found");
-    Serial.println("Nr | SSID                             | RSSI | CH | Encryption");
+    println("Scan done");
+    print(n);
+    println(" networks found");
+    println("Nr | SSID                             | RSSI | CH | Encryption");
     for (int i = 0; i < n; ++i)
     {
         // Print SSID and RSSI for each network found
         Serial.printf("%2d", i + 1);
-        Serial.print(" | ");
+        print(" | ");
         Serial.printf("%-32.32s", WiFi.SSID(i).c_str());
-        Serial.print(" | ");
+        print(" | ");
         Serial.printf("%4ld", WiFi.RSSI(i));
-        Serial.print(" | ");
+        print(" | ");
         Serial.printf("%2ld", WiFi.channel(i));
-        Serial.print(" | ");
+        print(" | ");
         switch (WiFi.encryptionType(i))
         {
         case WIFI_AUTH_OPEN:
-            Serial.print("OPEN");
+            print("OPEN");
             break;
         case WIFI_AUTH_WEP:
-            Serial.print("WEP");
+            print("WEP");
             break;
         case WIFI_AUTH_WPA_PSK:
-            Serial.print("WPA");
+            print("WPA");
             break;
         case WIFI_AUTH_WPA2_PSK:
-            Serial.print("WPA2");
+            print("WPA2");
             break;
         case WIFI_AUTH_WPA_WPA2_PSK:
-            Serial.print("WPA+WPA2");
+            print("WPA+WPA2");
             break;
         case WIFI_AUTH_WPA2_ENTERPRISE:
-            Serial.print("WPA2-EAP");
+            print("WPA2-EAP");
             break;
         case WIFI_AUTH_WPA3_PSK:
-            Serial.print("WPA3");
+            print("WPA3");
             break;
         case WIFI_AUTH_WPA2_WPA3_PSK:
-            Serial.print("WPA2+WPA3");
+            print("WPA2+WPA3");
             break;
         case WIFI_AUTH_WAPI_PSK:
-            Serial.print("WAPI");
+            print("WAPI");
             break;
         default:
-            Serial.print("unknown");
+            print("unknown");
         }
         Serial.println();
         delay(10);
@@ -79,12 +79,12 @@ void scan()
 #if CONFIG_SOC_WIFI_SUPPORT_5G
     // Wait a bit before scanning again.
     delay(1000);
-    Serial.println("2.4G networks:");
+    println("2.4G networks:");
     WiFi.setBandMode(WIFI_BAND_MODE_2G_ONLY);
     ScanWiFi();
     // Wait a bit before scanning again.
     delay(1000);
-    Serial.println("5G networks:");
+    println("5G networks:");
     WiFi.setBandMode(WIFI_BAND_MODE_5G_ONLY);
     ScanWiFi();
 #endif
@@ -100,25 +100,25 @@ void connect(String arguments)
         int endOfSsid = arguments.indexOf(" ");
         String ssid = arguments.substring(0, endOfSsid - 1);
         String password = arguments.substring(endOfSsid + 1);
-        Serial.println("\n");
-        Serial.print("Connecting to ");
-        Serial.println(ssid);
+        println("\n");
+        print("Connecting to ");
+        println(ssid);
 
         WiFi.begin(ssid, password);
 
         while (WiFi.status() != WL_CONNECTED)
         {
             delay(500);
-            Serial.print(".");
+            print(".");
         }
 
-        Serial.println();
-        Serial.print("WiFi connected, local IP is ");
-        Serial.println(WiFi.localIP());
+        println();
+        print("WiFi connected, local IP is ");
+        println(WiFi.localIP());
     }
     else
     {
-        Serial.println("Usage: connect [SSID] [PASSWORD]");
+        println("Usage: connect [SSID] [PASSWORD]");
     }
 }
 
@@ -127,11 +127,11 @@ void disconnect(String arguments)
     if (arguments == "force")
     {
         WiFi.disconnect(true, false);
-        Serial.println("WiFi disconnected and radio stopped");
+        println("WiFi disconnected and radio stopped");
     }
     else
     {
         WiFi.disconnect(false, false);
-        Serial.println("WiFi disconnected from network (radio still running, stop with `disconnect force`)");
+        println("WiFi disconnected from network (radio still running, stop with `disconnect force`)");
     }
 }

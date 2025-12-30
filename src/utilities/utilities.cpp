@@ -1,6 +1,83 @@
 #include "utilities/utilities.h"
 #include <Arduino.h>
 
+// BEGIN OUPUT
+
+// ---------
+// internals
+// ---------
+
+// Main internal print function, controls outputs
+void _print(const char *text)
+{
+    Serial.println(text);
+}
+
+// Internal println function
+void _println(const char *text)
+{
+    _print(text + '\n');
+}
+
+// -----
+// print
+// -----
+
+// C string
+void print(const char *text)
+{
+    _print(text);
+}
+
+// Arduino String
+void print(const String &text)
+{
+    _print(text.c_str());
+}
+
+// Single character
+void print(char c)
+{
+    char buf[2] = {c, '\0'};
+    _print(buf);
+}
+
+// blank ig
+void print()
+{
+    _print("");
+}
+
+// -------
+// println
+// -------
+
+// C string
+void println(const char *text)
+{
+    _println(text);
+}
+
+// Arduino String
+void println(const String &text)
+{
+    _println(text.c_str());
+}
+
+// Single character
+void println(char c)
+{
+    char buf[2] = {c, '\0'};
+    _println(buf);
+}
+
+void println()
+{
+    _println("");
+}
+
+// END OF OUTPUT
+
 uint16_t parseColorInput(String input)
 { // Imma be honest i got chatgpt to do this color parsing
     input.trim();
@@ -15,7 +92,7 @@ uint16_t parseColorInput(String input)
         }
         if (input.length() != 6)
         {
-            Serial.println("Invalid hex color format.");
+            println("Invalid hex color format.");
             return 0;
         }
         char rStr[3], gStr[3], bStr[3];
@@ -33,7 +110,7 @@ uint16_t parseColorInput(String input)
         int secondComma = input.indexOf(',', firstComma + 1);
         if (firstComma == -1 || secondComma == -1)
         {
-            Serial.println("Invalid RGB format. Use R,G,B or #RRGGBB.");
+            println("Invalid RGB format. Use R,G,B or #RRGGBB.");
             return 0;
         }
         r = input.substring(0, firstComma).toInt();
@@ -45,12 +122,12 @@ uint16_t parseColorInput(String input)
     b = constrain(b, 0, 255);
     // Convert to RGB565
     uint16_t color565 = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
-    Serial.print("Input color: R=");
-    Serial.print(r);
-    Serial.print(", G=");
-    Serial.print(g);
-    Serial.print(", B=");
-    Serial.println(b);
+    print("Input color: R=");
+    print(r);
+    print(", G=");
+    print(g);
+    print(", B=");
+    println(b);
     return color565;
 }
 
@@ -134,12 +211,12 @@ String formatTime(uint64_t totalSeconds)
     return result;
 }
 
-int getNumOf(String args, char delimiter)
+int getNumOf(String args, char delim)
 {
     int numOf = 0;
     for (int i = 0; i < args.length(); i++)
     {
-        if (args[i] == delimiter)
+        if (args[i] == delim)
         {
             numOf++;
         }
