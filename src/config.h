@@ -7,9 +7,9 @@
 
 #define NAME "Esp32 Serial OS"
 #define PROMPT "Esp32SerialOS> "
-#define OSVERSION "Beta 1.0.0"
+#define OSVERSION "Beta 1.0.1"
 #define CONTRIB "Sebminecrafter"
-#define LASTUPD "Print functions changed, still working on wifi..."
+#define LASTUPD "New output pipeline and WiFi"
 
 constexpr const char *LOGO[] = {
     "    ████████████    ",

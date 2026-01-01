@@ -23,13 +23,13 @@ void ScanWiFi()
     for (int i = 0; i < n; ++i)
     {
         // Print SSID and RSSI for each network found
-        printf("%2d", i + 1);
+        printff("%2d", i + 1);
         print(" | ");
-        printf("%-32.32s", WiFi.SSID(i).c_str());
+        printff("%-32.32s", WiFi.SSID(i).c_str());
         print(" | ");
-        printf("%4ld", WiFi.RSSI(i));
+        printff("%4ld", WiFi.RSSI(i));
         print(" | ");
-        printf("%2ld", WiFi.channel(i));
+        printff("%2ld", WiFi.channel(i));
         print(" | ");
         switch (WiFi.encryptionType(i))
         {
@@ -70,7 +70,7 @@ void ScanWiFi()
     // Delete the scan result to free memory for code below.
     WiFi.scanDelete();
 }
-void scan()
+void scan(String arguments)
 {
 #if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 4, 2)
     WiFi.setBandMode(WIFI_BAND_MODE_AUTO);

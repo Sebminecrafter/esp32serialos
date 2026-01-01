@@ -1,5 +1,6 @@
 #include "commands/commands.h"
 #include <Arduino.h>
+#include "commands/command/wifi/main.h"
 
 CommandEntry commandTable[] = {
     {"help", cmdHelp, "Show this help message"},
@@ -14,7 +15,10 @@ CommandEntry commandTable[] = {
     {"ver", aboutCmd, "alias for about"},
     {"sleep", deepSleepTimer, "Deep sleep for _ amount of time *WILL MAKE DEVICE TEMPORARILY UNAVAILABLE*"},
     {"echo", echo, "Echo text back/display text to console"},
-    {"logo", logo, "Prints Sebby logo"}};
+    {"logo", logo, "Prints Sebby logo"},
+    {"connect", connect, "Connect to a WiFi network"},
+    {"disconnect", disconnect, "Disconnect from WiFi"},
+    {"scan", scan, "Scan for WiFi networks"}};
 const uint8_t commandCount = sizeof(commandTable) / sizeof(commandTable[0]);
 
 // Esp32SerialOS essential/main shell commands

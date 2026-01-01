@@ -1,8 +1,5 @@
 #include "utilities/utilities.h"
 #include <Arduino.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 // BEGIN OUPUT
 
@@ -19,7 +16,7 @@ void _print(const char *text)
 // Internal println function
 void _println(const char *text)
 {
-    _print(text + '\n');
+    Serial.println(text);
 }
 
 // -----
@@ -80,12 +77,9 @@ void println()
     _println("");
 }
 
-// format
-char *formatf(const char *format, ...)
+// Helper for formatting with va_list
+char *vformatf(const char *format, va_list args)
 {
-    va_list args;
-    va_start(args, format);
-
     va_list args_copy;
     va_copy(args_copy, args);
     int len = vsnprintf(NULL, 0, format, args_copy);
@@ -93,29 +87,42 @@ char *formatf(const char *format, ...)
 
     if (len < 0)
     {
-        va_end(args);
         return NULL;
     }
 
     char *buffer = (char *)malloc(len + 1);
     if (!buffer)
     {
-        va_end(args);
         return NULL;
     }
 
     vsnprintf(buffer, len + 1, format, args);
-    va_end(args);
 
     return buffer;
 }
 
-// printf
-void printf(const char *format)
+// format
+char *formatf(const char *format, ...)
 {
-    char *text = formatf(format);
-    print(text);
-    free(text);
+    va_list args;
+    va_start(args, format);
+    char *result = vformatf(format, args);
+    va_end(args);
+    return result;
+}
+
+// printf
+void printff(const char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    char *text = vformatf(format, args);
+    if (text)
+    {
+        print(text);
+        free(text);
+    }
+    va_end(args);
 }
 
 // END OF OUTPUT

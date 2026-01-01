@@ -3,4 +3,6 @@
 #include "WiFi.h"
 
 extern void startWifi();
-extern void scan();
+extern void scan(String arguments);
+extern void connect(String arguments);
+extern void disconnect(String arguments);
