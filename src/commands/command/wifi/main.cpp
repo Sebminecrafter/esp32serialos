@@ -23,13 +23,13 @@ void ScanWiFi()
     for (int i = 0; i < n; ++i)
     {
         // Print SSID and RSSI for each network found
-        Serial.printf("%2d", i + 1);
+        printf("%2d", i + 1);
         print(" | ");
-        Serial.printf("%-32.32s", WiFi.SSID(i).c_str());
+        printf("%-32.32s", WiFi.SSID(i).c_str());
         print(" | ");
-        Serial.printf("%4ld", WiFi.RSSI(i));
+        printf("%4ld", WiFi.RSSI(i));
         print(" | ");
-        Serial.printf("%2ld", WiFi.channel(i));
+        printf("%2ld", WiFi.channel(i));
         print(" | ");
         switch (WiFi.encryptionType(i))
         {
@@ -63,7 +63,7 @@ void ScanWiFi()
         default:
             print("unknown");
         }
-        Serial.println();
+        println();
         delay(10);
     }
 

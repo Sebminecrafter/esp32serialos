@@ -36,27 +36,27 @@ void cmdHelp(String arguments)
 {
     if (arguments == "")
     {
-        Serial.println("\nAvailable Commands:\n");
+        println("\nAvailable Commands:\n");
         for (uint8_t i = 0; i < commandCount; i++)
         {
-            Serial.print(commandTable[i].command);
-            Serial.print(" - ");
-            Serial.println(commandTable[i].help);
+            print(commandTable[i].command);
+            print(" - ");
+            println(commandTable[i].help);
         }
-        Serial.println();
+        println();
     }
     else
     {
         signed int cmdIdx = getCommandIndex(arguments);
         if (cmdIdx == -1)
         {
-            Serial.println("Couldn't find command `" + arguments + "`");
+            println("Couldn't find command `" + arguments + "`");
         }
         else
         {
-            Serial.print(commandTable[cmdIdx].command);
-            Serial.print(" - ");
-            Serial.println(commandTable[cmdIdx].help);
+            print(commandTable[cmdIdx].command);
+            print(" - ");
+            println(commandTable[cmdIdx].help);
         }
     }
 }
@@ -64,23 +64,23 @@ void logo(String arguments)
 {
     for (int i = 0; i < logoCount; i++)
     {
-        Serial.println(LOGO[i]);
+        println(LOGO[i]);
     }
 }
 
 void aboutCmd(String arguments) // About OS
 {
     logo("");
-    Serial.print(" --- ");
-    Serial.print(NAME);
-    Serial.println(" --- ");
-    Serial.print("Version ");
-    Serial.println(OSVERSION);
-    Serial.print("Made by ");
-    Serial.println(CONTRIB);
-    Serial.println("Written in C++");
-    Serial.print("Last update: ");
-    Serial.println(LASTUPD);
+    print(" --- ");
+    print(NAME);
+    println(" --- ");
+    print("Version ");
+    println(OSVERSION);
+    print("Made by ");
+    println(CONTRIB);
+    println("Written in C++");
+    print("Last update: ");
+    println(LASTUPD);
 }
 
 // Deep sleep
@@ -90,12 +90,12 @@ void deepSleepTimer(String arguments)
 
     if (totalSeconds < 1)
     {
-        Serial.println("Invalid usage. Could not parse time or zero duration.");
+        println("Invalid usage. Could not parse time or zero duration.");
         return;
     }
 
-    Serial.print("Sleeping for ");
-    Serial.println(formatTime(totalSeconds));
+    print("Sleeping for ");
+    println(formatTime(totalSeconds));
 
     delay(250);
     Serial.flush();

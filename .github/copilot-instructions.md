@@ -7,14 +7,14 @@ This is a modular C++ firmware for ESP32 devices with serial command interface a
 - **Shell System** (`src/shell/`): Command parsing, history navigation (up/down arrows)
 - **Command Registry** (`src/commands/`): Extensible command table in `commands.cpp`
 - **TFT Display** (`src/commands/command/tft.cpp`): Visual output with color/text controls
-- **Utilities** (`src/utilities/utilities.cpp`): Color parsing (hex/RGB), time parsing (1h2m3s), string helpers
+- **Utilities** (`src/utilities/utilities.cpp`): Color parsing (hex/RGB), time parsing (1h2m3s), string helpers, print functions
 
 ## Key Patterns
 
 - **Command Structure**: Add new commands to `commandTable[]` in `commands.cpp` with function pointer and help text
 - **Argument Handling**: Commands receive `String arguments` - and automatically use `stripBeginning()` for parsing
 - **State Management**: Global variables track UI state (e.g., `showPrompt`, `command`, TFT colors/position)
-- **Output**: `Serial.println()` for console feedback, TFT functions for display
+- **Output**: `println()` for console feedback, TFT functions for display
 - **Color Input**: Accepts "#RRGGBB" or "R,G,B" formats, converts to RGB565 via `parseColorInput()`
 - **Time Parsing**: Natural format like "30m" or "1h 30m" via `parseTime()`, outputs formatted strings
 
@@ -28,10 +28,10 @@ This is a modular C++ firmware for ESP32 devices with serial command interface a
 
 ## Conventions
 
-- Header guards with `#pragma once` and `#ifndef`
+- Header guards with `#pragma once`
 - Extern declarations in headers for globals/functions
 - TFT operations clear screen on config changes (orientation, colors, size)
-- History buffer: 5 commands max (`HISTORY_SIZE`)
+- History buffer: Length configurable (`HISTORY_SIZE`)
 - Deep sleep: Use `esp_sleep_enable_timer_wakeup()` with microseconds
 
 ## Adding Features
@@ -47,7 +47,7 @@ This is a modular C++ firmware for ESP32 devices with serial command interface a
 // In tft.cpp
 void TFTdrawCircle(String arguments) {
     // Parse arguments, draw on tft
-    Serial.println("Circle drawn");
+    println("Circle drawn");
 }
 
 // In tft.h

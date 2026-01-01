@@ -17,7 +17,7 @@ void setup()
   splash();
   while (Serial.available() == 0)
   {
-    Serial.println("Waiting for input...");
+    println("Waiting for input...");
     delay(1000);
   }
   clearScreen();
@@ -27,9 +27,9 @@ void setup()
   esp_sleep_wakeup_cause_t cause = esp_sleep_get_wakeup_cause();
   if (cause == 4)
   {
-    Serial.println("Awoken from deep sleep.");
+    println("Awoken from deep sleep.");
   }
-  Serial.println("");
+  println("");
 }
 
 void loop()
@@ -37,7 +37,7 @@ void loop()
   // Show prompt once per command
   if (showPrompt)
   {
-    Serial.print(PROMPT);
+    print(PROMPT);
     showPrompt = false;
   }
   // Read incoming characters
@@ -51,7 +51,7 @@ void loop()
     // Handle Enter key (CR or LF)
     if (c == '\r' || c == '\n')
     {
-      Serial.println(); // move to next line
+      println(); // move to next line
       command.trim();
       if (command.length() > 0)
       {
@@ -72,14 +72,14 @@ void loop()
       if (command.length() > 0)
       {
         command.remove(command.length() - 1);
-        Serial.print("\b \b"); // erase character on terminal
+        print("\b \b"); // erase character on terminal
       }
     }
     // Normal character
     else
     {
       command += c;
-      Serial.print(c); // echo character
+      print(c); // echo character
     }
   }
 }

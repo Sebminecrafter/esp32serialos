@@ -15,3 +15,4 @@ extern void println(const char *text);
 extern void println(const String &text);
 extern void println(char c);
 extern void println();
+extern void printf(const char *format);

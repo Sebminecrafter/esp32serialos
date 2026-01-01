@@ -4,10 +4,10 @@
 String command = ""; // init command string
 
 void redrawLine()
-{                             // Redraw current command line
-    Serial.print("\r\033[K"); // clear line
-    Serial.print(PROMPT);
-    Serial.print(command);
+{                      // Redraw current command line
+    print("\r\033[K"); // clear line
+    print(PROMPT);
+    print(command);
 }
 
 void processCommand(String input)
@@ -31,5 +31,5 @@ void processCommand(String input)
         }
     }
 
-    Serial.println("Unknown command: `" + command + "` type help for a list of commands.");
+    println("Unknown command: `" + command + "` type help for a list of commands.");
 }

@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "config.h"
 #include "commands/command/tft/tft.h"
+#include "utilities/utilities.h"
 
 typedef void (*CommandFunc)(String arguments);
 typedef struct
@@ -20,7 +21,7 @@ extern void TFTbgColor(String arguments);
 extern void TFTorientation(String arguments);
 extern void aboutCmd(String arguments);
 extern void deepSleepTimer(String arguments);
-inline void echo(String arguments) { Serial.println(arguments); }
+inline void echo(String arguments) { println(arguments); }
 extern void logo(String arguments);
 
 extern CommandEntry commandTable[]; // Custom table of all commands
