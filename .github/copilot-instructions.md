@@ -55,6 +55,4 @@ extern void TFTdrawCircle(String arguments);
 
 // In commands.cpp
 {"circle", TFTdrawCircle, "Draw circle on TFT"},
-```</content>
-<parameter name="filePath">c:\Users\sebas\OneDrive\Documents\Projects\cpp\esp32serialos\.github\copilot-instructions.md
 ````
