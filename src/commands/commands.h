@@ -7,7 +7,7 @@
 #endif
 
 typedef void (*CommandFunc)(String arguments);
-typedef struct
+typedef struct CommandEntry
 {
     const char *command;
     CommandFunc function;

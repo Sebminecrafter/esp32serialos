@@ -3,6 +3,9 @@
 #ifdef USE_TFT
 #include <Arduino.h>
 #include "commands/command/tft/tft.h"
+#include "commands/commands.h"
+
+struct CommandEntry;
 
 extern void TFTtextColor(String arguments);
 extern void TFTbgColor(String arguments);
