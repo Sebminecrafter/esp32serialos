@@ -3,8 +3,8 @@
 #include "commands/command/tft/tft.h"
 #include "config.h"
 
-#define IMG_HEIGHT 128
-#define IMG_WIDTH 128
+#define IMG_HEIGHT 32
+#define IMG_WIDTH 32
 
 // clang-format off
 // width: 32, height: 32, length: 256
