@@ -50,7 +50,7 @@ static void splash()
     setTextSize(2);                                  // Set text size
     int16_t x = (tft.width() - IMG_WIDTH) / 2;       // Center horizontally
     int16_t y = (tft.height() - IMG_HEIGHT) / 2;     // Center vertically
-    tft.pushImage(x, y, IMG_WIDTH, IMG_HEIGHT, IMG); // Draw a small bitmap
+    tft.pushImage(x, y, IMG_WIDTH, IMG_HEIGHT, IMG); // Draw bitmap
     displayText(NAME);                               // Show name
     delay(1500);                                     // Wait for 1.5 secs
     startTFT();                                      // Reset everything
