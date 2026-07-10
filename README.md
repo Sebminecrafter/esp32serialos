@@ -1,5 +1,13 @@
+
 # A simple shell OS for Esp32
-Currently designed for the LilyGo TTGO T-Display v1.1 (NOT S3!) <br>
-This (currently) is not *really* an operating system, but it's close. <br>
-I hope somebody else think this is cool <br>
-Made by [Sebminecrafter](https://sebminecrafter.github.io) <br>
+
+Compatible with almost all models
+
+This (currently) is not *really* an operating system, but it's close.
+
+## Features
+
+- Full serial shell that runs on the esp32 (Recommended for use with PuTTY)
+- TFT support (LilyGo T-Display non-S3 only)
+
+Made by [Sebminecrafter](https://github.com/Sebminecrafter)

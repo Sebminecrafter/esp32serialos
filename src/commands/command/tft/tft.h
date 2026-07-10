@@ -1,5 +1,9 @@
 #pragma once
+
+#ifdef USE_TFT
 #include <TFT_eSPI.h>
+#endif
+
 #include <SPI.h>
 #include <Arduino.h>
 #include "utilities/utilities.h"

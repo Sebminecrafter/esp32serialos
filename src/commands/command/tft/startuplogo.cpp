@@ -1,6 +1,9 @@
 #include "startuplogo.h"
-#include "commands/command/tft/tft.h"
 #include "config.h"
+#include "utilities/utilities.h"
+#ifdef USE_TFT
+#include "commands/command/tft/tft.h"
+#endif
 
 #define IMG_HEIGHT 96
 #define IMG_WIDTH 96
@@ -11,6 +14,7 @@ static const uint16_t IMG[] PROGMEM = {
 
 void splash()
 {
+#ifdef USE_TFT
     TFTorientation("1");                             // Landscape
     setTextSize(2);                                  // Set text size
     int16_t x = (tft.width() - IMG_WIDTH) / 2;       // Center horizontally
@@ -19,4 +23,7 @@ void splash()
     displayText(NAME);                               // Show name
     delay(1500);                                     // Wait for 1.5 secs
     startTFT();                                      // Reset everything
+#else
+    println(NAME);
+#endif
 }

@@ -3,8 +3,9 @@
 #include "shell/shell.h"
 #include "utilities/utilities.h"
 #include "commands/commands.h"
-#include "commands/command/tft/tft.h"
-#include "misc/startuplogo.h"
+#ifdef USE_TFT
+#include "commands/command/tft/tft_init.h"
+#endif
 #include "commands/command/wifi/main.h"
 
 bool showPrompt = true; // init prompt display
@@ -12,15 +13,18 @@ bool showPrompt = true; // init prompt display
 void setup()
 {
   Serial.begin(BAUD_RATE);
-  tft.init();
-  startTFT();
-  splash();
+  initCommandTable();
+#ifdef USE_TFT
+  initTFT();
+#endif
   while (Serial.available() == 0)
   {
     println("Waiting for input...");
     delay(1000);
   }
-  clearScreen();
+#ifdef USE_TFT
+  clearTFT();
+#endif
   startWifi();
 
   // Deep sleep cause?

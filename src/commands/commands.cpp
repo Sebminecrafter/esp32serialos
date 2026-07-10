@@ -2,24 +2,43 @@
 #include <Arduino.h>
 #include "commands/command/wifi/main.h"
 
-CommandEntry commandTable[] = {
-    {"help", cmdHelp, "Show this help message"},
-    {"show", showText, "Shows text on TFT screen"},
-    {"clear", clearScreenCmd, "Clears the TFT screen"},
-    {"size", TFTsetTextSize, "Sets the text size (1-7)"},
-    {"textcolor", TFTtextColor, "Sets the TFT screen text color"},
-    {"bgcolor", TFTbgColor, "Sets the TFT screen background color"},
-    {"orientation", TFTorientation, "Sets the TFT screen orientation (0-3)"},
-    {"about", aboutCmd, "About OS and version"},
-    {"version", aboutCmd, "alias for about"},
-    {"ver", aboutCmd, "alias for about"},
-    {"sleep", deepSleepTimer, "Deep sleep for _ amount of time *WILL MAKE DEVICE TEMPORARILY UNAVAILABLE*"},
-    {"echo", echo, "Echo text back/display text to console"},
-    {"logo", logo, "Prints Sebby logo"},
-    {"connect", connect, "Connect to a WiFi network"},
-    {"disconnect", disconnect, "Disconnect from WiFi"},
-    {"scan", scan, "Scan for WiFi networks"}};
-const uint8_t commandCount = sizeof(commandTable) / sizeof(commandTable[0]);
+static const uint8_t MAX_COMMANDS = 32;
+CommandEntry commandTable[MAX_COMMANDS];
+uint8_t commandCount = 0;
+
+#ifdef USE_TFT
+extern CommandEntry tftCommandTable[];
+extern const uint8_t tftCommandCount;
+#endif
+
+static void addCommand(const char *command, CommandFunc function, const char *help)
+{
+    if (commandCount < MAX_COMMANDS)
+    {
+        commandTable[commandCount++] = {command, function, help};
+    }
+}
+
+void initCommandTable()
+{
+    commandCount = 0;
+    addCommand("help", cmdHelp, "Show this help message");
+#ifdef USE_TFT
+    for (uint8_t i = 0; i < tftCommandCount; i++)
+    {
+        addCommand(tftCommandTable[i].command, tftCommandTable[i].function, tftCommandTable[i].help);
+    }
+#endif
+    addCommand("about", aboutCmd, "About OS and version");
+    addCommand("version", aboutCmd, "alias for about");
+    addCommand("ver", aboutCmd, "alias for about");
+    addCommand("sleep", deepSleepTimer, "Deep sleep for _ amount of time *WILL MAKE DEVICE TEMPORARILY UNAVAILABLE*");
+    addCommand("echo", echo, "Echo text back/display text to console");
+    addCommand("logo", logo, "Prints Sebby logo");
+    addCommand("connect", connect, "Connect to a WiFi network");
+    addCommand("disconnect", disconnect, "Disconnect from WiFi");
+    addCommand("scan", scan, "Scan for WiFi networks");
+}
 
 // Esp32SerialOS essential/main shell commands
 
