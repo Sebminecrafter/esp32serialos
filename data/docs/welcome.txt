@@ -1,0 +1,2 @@
+Welcome to Esp32SerialOS.
+The most simple and usable OS for your ESP32!

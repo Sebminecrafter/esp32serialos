@@ -3,6 +3,7 @@
 #include "shell/shell.h"
 #include "utilities/utilities.h"
 #include "commands/commands.h"
+#include "fs/fsrouter.h"
 #ifdef USE_TFT
 #include "commands/command/tft/tft_init.h"
 #endif
@@ -14,6 +15,7 @@ void setup()
 {
   Serial.begin(BAUD_RATE);
   initCommandTable();
+  initFilesystems();
 #ifdef USE_TFT
   initTFT();
 #endif

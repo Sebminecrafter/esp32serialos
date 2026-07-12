@@ -1,6 +1,7 @@
 #include "commands/commands.h"
 #include <Arduino.h>
 #include "commands/command/wifi/main.h"
+#include "commands/command/fs/fs_commands.h"
 
 static const uint8_t MAX_COMMANDS = 32;
 CommandEntry commandTable[MAX_COMMANDS];
@@ -38,6 +39,9 @@ void initCommandTable()
     addCommand("connect", connect, "Connect to a WiFi network");
     addCommand("disconnect", disconnect, "Disconnect from WiFi");
     addCommand("scan", scan, "Scan for WiFi networks");
+    addCommand("ls", cmdLs, "List directory contents, e.g. `ls /sd/docs`");
+    addCommand("cat", cmdCat, "Print a file's contents, e.g. `cat /flash/docs/welcome.txt`");
+    addCommand("mounts", cmdMounts, "Show filesystem mount status");
 }
 
 // Esp32SerialOS essential/main shell commands
